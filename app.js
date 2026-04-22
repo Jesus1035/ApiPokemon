@@ -30,3 +30,35 @@ btnAgregar.addEventListener('click', agregarAlEquipo);
 inputNombre.addEventListener('keypress', e => {
     if (e.key === 'Enter') idBuscarNombre.click();
 });
+
+async function buscarPokemon(param) {
+    try {
+        const response = await fetch(API_URL + param);
+
+        if (!response.ok) throw new Error("Pokemon no encontrado");
+
+        const data = await response.json();
+
+        pokemonActual = data;
+
+        mostrarPokemon(data);
+
+    } catch (error) {
+        alerta.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+    }
+}
+
+function mostrarPokemon(pokemon) {
+    ContenedorFicha.classList.remove('d-none');
+
+    document.getElementById('Nombrepokemon').textContent = pokemon.name;
+    document.getElementById('idpoke').textContent = pokemon.id;
+    document.getElementById('pokeAltura').textContent = pokemon.height / 10;
+    document.getElementById('pokePeso').textContent = pokemon.weight / 10;
+    document.getElementById('pokeHabilidad').textContent = pokemon.abilities[0].ability.name;
+
+    document.getElementById('imagenpokemon').src = pokemon.sprites.front_default;
+
+    alerta.innerHTML = "";
+}
+
