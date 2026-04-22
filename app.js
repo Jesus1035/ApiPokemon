@@ -10,7 +10,7 @@ const idBuscarNombre = document.getElementById('idBuscarNombre');
 const btn_aleatorio = document.getElementById('btn_aleatorio');
 const ContenedorFicha = document.getElementById('ContenedorFicha');
 const btnAgregar = document.getElementById('btnAgregar');
-const tablaEquipo = document.getElementById('tablaEquipo');
+const tablaEquipo = document.querySelector('#tablaEquipo tbody');
 const alerta = document.getElementById('alerta');
 const contadorEquipo = document.getElementById('contadorEquipo');
 
@@ -61,4 +61,48 @@ function mostrarPokemon(pokemon) {
 
     alerta.innerHTML = "";
 }
+function agregarAlEquipo() {
 
+    if (!pokemonActual) return;
+
+    if (equipo.length >= MAX_EQUIPO) {
+        alerta.innerHTML = `<div class="alert alert-warning">Máximo 6 Pokémon</div>`;
+        return;
+    }
+
+    equipo.push(pokemonActual);
+    renderEquipo();
+}
+
+function renderEquipo() {
+
+    tablaEquipo.innerHTML = "";
+
+    equipo.forEach((poke, index) => {
+
+        const row = `
+            <tr>
+                <td>${poke.id}</td>
+                 <td>
+                    <img src="${poke.sprites.front_default}" width="50">
+                </td>
+                <td>${poke.name}</td>
+                <td>${poke.types.map(t => t.type.name).join(", ")}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="eliminar(${index})">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        tablaEquipo.innerHTML += row;
+    });
+
+    contadorEquipo.textContent = equipo.length;
+}
+
+function eliminar(index) {
+    equipo.splice(index, 1);
+    renderEquipo();
+}
