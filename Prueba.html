@@ -4,64 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba B</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="cuerpo">
-    <div class="contenedor">
-        <h1 class="Titulo">Pokedex</h1>
 
-        <div class="sombras">
-            <div class="cuerpo1">
-                <div class="objetos">
-                    <div class="mod-5">
-                        <label for="inputNombre" class="label">Buscar por nombre</label>
-                        <input type="text" id="inputNombre" class="control" placeholder="Ejemplo: Charmander">
+<body class="container py-4"> <!-- antes: cuerpo -->
+
+    <div class="container"> <!-- antes: contenedor -->
+        <h1 class="text-center mb-4">Pokedex</h1>
+
+        <div class="shadow p-3 mb-4"> <!-- antes: sombras -->
+            <div>
+                <div class="row g-3 align-items-end"> <!-- antes: objetos -->
+
+                    <div class="col-md-5"> <!-- antes: mod-5 -->
+                        <label for="inputNombre" class="form-label">Buscar por nombre</label>
+                        <input type="text" id="inputNombre" class="form-control" placeholder="Ejemplo: Charmander">
                     </div>
-                    <div class="mod-3">
-                        <button id="idBuscarNombre" class="btm-primario">Buscar Pokemon</button>
+
+                    <div class="col-md-3"> <!-- antes: mod-3 -->
+                        <button id="idBuscarNombre" class="btn btn-primary w-100">
+                            Buscar Pokemon
+                        </button>
                     </div>
-                    <div class="mod-4">
-                        <button id="btn_aleatorio" class="btn_exito">Buscar por ID Aleatoriamente</button>
+
+                    <div class="col-md-4"> <!-- antes: mod-4 -->
+                        <button id="btn_aleatorio" class="btn btn-success w-100">
+                            Buscar por ID Aleatoriamente
+                        </button>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <div id="ContenedorFicha" class="d-none">
-        <div class="carta pokemon">
-            <div class="row g-o">
+        <div class="card"> <!-- antes: carta pokemon -->
+            <div class="row g-0">
+
                 <div class="col-md-4 text-center bg-body-tertiary p-3">
                     <img id="imagenpokemon" src="" alt="Pokemon" class="img-fluid">
                 </div>
-                <div class="mod-8">
-                    <div class="crad-body">
-                        <h3 class="titulo">
+
+                <div class="col-md-8"> <!-- antes: mod-8 -->
+                    <div class="card-body">
+
+                        <h3>
                             <span id="Nombrepokemon"></span>
                             <small class="text-muted">#<span id="idpoke"></span></small>
                         </h3>
+
                         <div id="tiposPokemon" class="mb-2"></div>
-                        <p class="mb-1"><strong>Altura:</strong><span id="pokeAltura"></span>m</p>
-                        <p class="mb-2"><strong>Peso:</strong><span id="pokePeso"></span>m</p>
-                        <p class="mb-3"><strong>Habilidad:</strong><span id="pokeHabilidad"></span>m</p>
-                        <button id="btnDetalles", class="btn-info" data-bs-toggle="modal" data-bs-target="#modaldetalles">Ver mas detalles</button>
-                        <button id="btnAgregar" class="btn-warning">Añadir al equipo</button>
-                        <div id="alerta" class="alerta-3" role="alert"></div>
+
+                        <p class="mb-1"><strong>Altura:</strong> <span id="pokeAltura"></span> m</p>
+                        <p class="mb-2"><strong>Peso:</strong> <span id="pokePeso"></span> kg</p>
+                        <p class="mb-3"><strong>Habilidad:</strong> <span id="pokeHabilidad"></span></p>
+
+                        <button id="btnDetalles" class="btn btn-info"
+                                data-bs-toggle="modal" data-bs-target="#modalDetalles">
+                            Ver más detalles
+                        </button>
+
+                        <button id="btnAgregar" class="btn btn-warning">
+                            Añadir al equipo
+                        </button>
+
+                        <div id="alerta" class="mt-2"></div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <div class=" card shadow-sm">
-        <div class="card-header d-flex justify-content-between align-item-center">
-            <h5 class="mb-o">Mi equipo</h5>
-            <span class="badge bg-secondary"><span id="contadorEquipo">0</span></span>
+    <div class="card shadow-sm mt-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Mi equipo</h5>
+            <span class="badge bg-secondary">
+                <span id="contadorEquipo">0</span>
+            </span>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tablaEquipo" class="table table-hover-aling-middle">
+                <table id="tablaEquipo" class="table table-hover align-middle">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -80,20 +108,26 @@
     <div class="modal fade" id="modalDetalles" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
+
                 <div class="modal-header">
+                    <h5 class="modal-title">Detalles</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
                     <h6>Stats Base</h6>
                     <div id="modalStats" class="mb-3"></div>
+
                     <h6>Movimientos</h6>
                     <div id="modalMoves" class="d-flex flex-wrap gap-1"></div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 
-
-    
 </body>
 </html>
